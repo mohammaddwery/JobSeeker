@@ -6,7 +6,7 @@
     app:startDestination="@id/jobsFragment">
     <fragment
         android:id="@+id/jobsFragment"
-        android:name="com.seekasia.jobseeker.presentation.screens.jobs.JobsFragment"
+        android:name="com.seekasia.jobseeker.features.job.presentation.jobs.JobsFragment"
         tools:layout="@layout/fragment_jobs">
 <!--        <action-->
 <!--            android:id="@+id/action_jobs_to_job_details"-->

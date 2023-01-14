@@ -18,7 +18,7 @@
         android:theme="@style/Theme.JobSeeker"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.screens.main.MainActivity"
+            android:name="com.seekasia.jobseeker.features.job.presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
