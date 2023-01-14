@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">JobSeeker</string>
+    <string name="app_name">Job Seeker</string>
+    <string name="retry">Retry</string>
 </resources>
