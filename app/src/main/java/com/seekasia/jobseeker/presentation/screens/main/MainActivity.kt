@@ -1,6 +1,6 @@
 package com.seekasia.jobseeker.presentation.screens.main
 
-import com.medicus.app.presentation.base.BaseActivity
+import com.seekasia.jobseeker.presentation.screens.base.BaseActivity
 import com.medicus.app.presentation.main.MainViewModel
 import com.seekasia.jobseeker.R
 import com.seekasia.jobseeker.databinding.ActivityMainBinding

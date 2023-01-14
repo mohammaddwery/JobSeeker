@@ -1,4 +1,4 @@
-package com.medicus.app.presentation.base
+package com.seekasia.jobseeker.presentation.screens.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

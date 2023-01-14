@@ -1,5 +1,5 @@
 package com.medicus.app.presentation.main
 
-import com.medicus.app.presentation.base.BaseViewModel
+import com.seekasia.jobseeker.presentation.screens.base.BaseViewModel
 
 class MainViewModel : BaseViewModel()

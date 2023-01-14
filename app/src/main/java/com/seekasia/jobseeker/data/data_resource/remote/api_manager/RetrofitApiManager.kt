@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitApiManager {
     fun provide(context: Context, baseUrl: String): Retrofit {
         val client = OkHttpClient.Builder()
-            .setHandleErrorsInterceptor()
+            .setResponseHAndlerInterceptor()
             .setNetworkInterceptor(context = context)
             .setLoggerInterceptor(HttpLoggingInterceptor.Level.BODY)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -41,6 +41,6 @@ class RetrofitApiManager {
     private fun OkHttpClient.Builder.setNetworkInterceptor(context: Context) : OkHttpClient.Builder =
         addInterceptor(NetworkConnectionInterceptor(context))
 
-    private fun OkHttpClient.Builder.setHandleErrorsInterceptor() : OkHttpClient.Builder =
-        addInterceptor(HandleErrorInterceptor())
+    private fun OkHttpClient.Builder.setResponseHAndlerInterceptor() : OkHttpClient.Builder =
+        addInterceptor(ResponseHandlerInterceptor())
 }

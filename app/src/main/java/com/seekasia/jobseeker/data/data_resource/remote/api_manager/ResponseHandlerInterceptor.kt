@@ -1,7 +1,6 @@
 package com.seekasia.jobseeker.data.data_resource.remote.api_manager
 
-import android.content.Context
-import android.net.ConnectivityManager
+import android.text.TextUtils
 import com.google.gson.Gson
 import com.seekasia.jobseeker.data.data_resource.remote.exception.ApiException
 import com.seekasia.jobseeker.data.data_resource.remote.response.ErrorResponse
@@ -10,7 +9,8 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import java.io.IOException
 
-class HandleErrorInterceptor: Interceptor {
+
+class ResponseHandlerInterceptor: Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())

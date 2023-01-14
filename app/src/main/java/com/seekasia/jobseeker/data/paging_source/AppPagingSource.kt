@@ -6,8 +6,7 @@ import com.seekasia.jobseeker.data.data_resource.remote.exception.ApiException
 import com.seekasia.jobseeker.data.data_resource.remote.exception.NoConnectionException
 
 class AppPagingSource<T: Any>(
-    val fetchResults: suspend (offset: Int, limit: Int) -> List<T>,
-    private val limit: Int,
+    val fetchResults: suspend (page: Int, pageSize: Int) -> List<T>,
 ) : PagingSource<Int, T>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
