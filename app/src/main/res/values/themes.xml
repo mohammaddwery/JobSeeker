@@ -13,7 +13,7 @@
     <style name="textHeadline6" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/sp_24</item>
+        <item name="android:textSize">@dimen/sp_22</item>
     </style>
     <style name="textHeadline7" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/black</item>

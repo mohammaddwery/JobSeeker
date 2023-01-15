@@ -2,5 +2,8 @@
     <string name="app_name">Job Seeker</string>
     <string name="retry">Retry</string>
     <string name="no_results_message">Sorry.. No results found!</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="description">Description:</string>
 
 </resources>

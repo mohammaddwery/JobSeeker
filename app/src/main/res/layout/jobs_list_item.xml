@@ -6,7 +6,7 @@
     <data>
         <variable
             name="job"
-            type="com.seekasia.jobseeker.data.model.JobModel" />
+            type="com.seekasia.jobseeker.features.job.data.model.JobModel" />
     </data>
 
     <androidx.cardview.widget.CardView

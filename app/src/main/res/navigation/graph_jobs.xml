@@ -8,12 +8,21 @@
         android:id="@+id/jobsFragment"
         android:name="com.seekasia.jobseeker.features.job.presentation.jobs.JobsFragment"
         tools:layout="@layout/fragment_jobs">
-<!--        <action-->
-<!--            android:id="@+id/action_jobs_to_job_details"-->
-<!--            app:destination="@id/jobDetailFragment"-->
-<!--            app:enterAnim="@anim/slide_in_right"-->
-<!--            app:exitAnim="@anim/slide_out_left"-->
-<!--            app:popEnterAnim="@anim/slide_in_left"-->
-<!--            app:popExitAnim="@anim/slide_out_right"/>-->
+        <action
+            android:id="@+id/action_jobs_to_job_details"
+            app:destination="@id/jobDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/jobDetailFragment"
+        android:name="com.seekasia.jobseeker.features.job.presentation.job_details.JobDetailsFragment"
+        tools:layout="@layout/fragment_job_details" >
+        <argument
+            android:name="job"
+            app:nullable="false"
+            app:argType="com.seekasia.jobseeker.features.job.data.model.JobModel" />
     </fragment>
 </navigation>

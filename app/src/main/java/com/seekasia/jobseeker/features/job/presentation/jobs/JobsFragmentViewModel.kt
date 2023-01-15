@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.*
 class JobsFragmentViewModel(
     private val fetchJobsUseCase: UseCase<Flow<PagingData<JobModel>>, NoParam>,
 ) : BaseViewModel() {
-    private lateinit var _jobsFlow: Flow<PagingData<JobModel>>
-    val jobsFlow: Flow<PagingData<JobModel>>
-        get() = _jobsFlow
+
+    private val _jobsFlow = MutableStateFlow<PagingData<JobModel>>(PagingData.empty())
+    val jobsStateFlow: StateFlow<PagingData<JobModel>> = _jobsFlow
 
     init {
         fetchJobs()
@@ -21,7 +21,11 @@ class JobsFragmentViewModel(
 
     private fun fetchJobs() = launchPagingAsync(
         execute = { fetchJobsUseCase.call(NoParam()).cachedIn(viewModelScope) },
-        onSuccess = { _jobsFlow = it },
+        onSuccess = { _jobsFlow.value = it.value },
         onError = { }
     )
+
+    fun refreshJobs() {
+        fetchJobs()
+    }
 }

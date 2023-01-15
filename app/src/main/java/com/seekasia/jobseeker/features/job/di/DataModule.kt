@@ -2,7 +2,7 @@ package com.seekasia.jobseeker.features.job.di
 
 import com.seekasia.jobseeker.BuildConfig
 import com.seekasia.jobseeker.core.data.data_resource.remote.api_manager.RetrofitApiManager
-import com.seekasia.jobseeker.features.job.data.data_resource.remote.api_providers.JobApiProvider
+import com.seekasia.jobseeker.features.job.data.data_resource.remote.JobApiProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit

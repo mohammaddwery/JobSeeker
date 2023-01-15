@@ -2,6 +2,9 @@ package com.seekasia.jobseeker.features.job.presentation.jobs
 
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.seekasia.jobseeker.core.presentation.base.BaseFragment
 import com.seekasia.jobseeker.R
@@ -47,7 +50,10 @@ class JobsFragment : BaseFragment<FragmentJobsBinding, JobsFragmentViewModel>(),
                         footer = PagingLoadStateAdapter(jobsAdapter)
                     )
                 }
-                swipeRefresh.setOnRefreshListener { refresh() }
+                swipeRefresh.setOnRefreshListener {
+                    refresh()
+                    viewModel.refreshJobs()
+                }
                 jobClickListener = this@JobsFragment
             }
         }
@@ -55,7 +61,7 @@ class JobsFragment : BaseFragment<FragmentJobsBinding, JobsFragmentViewModel>(),
 
     private fun initObservers() = with(viewModel) {
         launchOnLifecycleScope {
-            jobsFlow.collectLatest {
+            jobsStateFlow.collectLatest {
                 jobsAdapter.submitData(it)
             }
         }
@@ -82,8 +88,9 @@ class JobsFragment : BaseFragment<FragmentJobsBinding, JobsFragmentViewModel>(),
     }
 
     private fun bindFailureState(message: String) {
-        binding.swipeRefresh.isRefreshing = false
+        binding.jobsRecyclerView.visibility = View.GONE
 
+        binding.swipeRefresh.isRefreshing = false
         with(binding.networkStateLayout) {
             root.visibility = View.VISIBLE
             errorMsg.visibility = View.VISIBLE
@@ -92,19 +99,34 @@ class JobsFragment : BaseFragment<FragmentJobsBinding, JobsFragmentViewModel>(),
 
             retryButton.setOnClickListener {
                 jobsAdapter.refresh()
+                viewModel.refreshJobs()
             }
         }
     }
 
-    private fun bindNotLoadingState() {
+    private suspend fun bindNotLoadingState() {
+        binding.jobsRecyclerView.visibility = View.VISIBLE
         binding.swipeRefresh.isRefreshing = false
-
         with(binding.networkStateLayout) {
-            root.visibility = View.GONE
+            if(jobsAdapter.snapshot().isEmpty()) {
+                root.visibility = View.VISIBLE
+                errorMsg.visibility = View.VISIBLE
+                retryButton.visibility = View.GONE
+                errorMsg.text = getString(R.string.no_results_message)
+            } else {
+                root.visibility = View.GONE
+            }
         }
     }
 
     override fun onJobClicked(binding: JobsListItemBinding, job: JobModel) {
-        Toast.makeText(context, job.positionTitle, Toast.LENGTH_SHORT).show()
+        val extras = FragmentNavigatorExtras(
+            binding.positionTitle to "positionTitle_${job.positionTitle}_${job.id}",
+        )
+
+        findNavController().navigate(
+            JobsFragmentDirections.actionJobsToJobDetails(job),
+            extras
+        )
     }
 }
